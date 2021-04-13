@@ -1,0 +1,21 @@
+{
+    "name": "parse-iterable-adapter",
+    "version": "0.0.1",
+    "description": "Email adapter for Parse Server though Iterable.",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/https://github.com/IceDev-xyz/parse-iterable-adapter.git"
+    },
+    "keywords": [
+        "parse",
+        "parse-server",
+        "email-adapter"
+    ],
+    "author": "IceDev.xyz",
+    "license": "MIT",
+    "homepage": "https://github.com/IceDev-xyz/parse-iterable-adapter#readme",
+    "dependencies": {
+        "axios": "^0.21.1"
+    }
+}
