@@ -7,7 +7,21 @@ var SimpleIterabledapter = (adapterOptions) => {
   };
 
   var sendMail = (email) => {
-    console.log(email);
+    axios({
+      method: "POST",
+      url: "https://api.iterable.com/api/email/target",
+      headers: {
+        "Api-Key": adapterOptions.apiKey,
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      data: {
+        campaignId: adapterOptions.defaultId,
+        recipientEmail: email.to,
+        dataFields: {
+          content: email.text,
+        },
+      },
+    });
   };
 
   var sendPasswordResetEmail = (options) => {
