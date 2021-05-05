@@ -1,6 +1,6 @@
 {
     "name": "parse-iterable-adapter",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Email adapter for Parse Server though Iterable.",
     "main": "index.js",
     "repository": {
