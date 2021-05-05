@@ -1,31 +1,20 @@
 const axios = require("axios");
 
-var SimpleIterabledapter = (adapterOptions) => {
-  const getUserEmail = (user) => {
-    let email = user.get("email") || user.get("username");
-    return email;
+const SimpleIterabledapter = (adapterOptions) => {
+  const getUserData = (user) => {
+    const email = user.get("email") || user.get("username");
+    let firstName = user.get("details") || null;
+    firstName = firstName?.firstName;
+
+    return { email, firstName };
   };
 
-  var sendMail = (email) => {
-    axios({
-      method: "POST",
-      url: "https://api.iterable.com/api/email/target",
-      headers: {
-        "Api-Key": adapterOptions.apiKey,
-        "Content-Type": "application/json; charset=utf-8",
-      },
-      data: {
-        campaignId: adapterOptions.defaultId,
-        recipientEmail: email.to,
-        dataFields: {
-          content: email.text,
-        },
-      },
-    });
+  const sendMail = (email) => {
+    console.log(email);
   };
 
-  var sendPasswordResetEmail = (options) => {
-    const email = getUserEmail(options.user);
+  const sendPasswordResetEmail = (options) => {
+    const { email, firstName } = getUserData(options.user);
     axios({
       method: "POST",
       url: "https://api.iterable.com/api/email/target",
@@ -37,14 +26,15 @@ var SimpleIterabledapter = (adapterOptions) => {
         campaignId: adapterOptions.passwordId,
         recipientEmail: email,
         dataFields: {
+          firstName: firstName,
           link: options.link,
         },
       },
     });
   };
 
-  var sendVerificationEmail = (options) => {
-    const email = getUserEmail(options.user);
+  const sendVerificationEmail = (options) => {
+    const { email, firstName } = getUserData(options.user);
     axios({
       method: "POST",
       url: "https://api.iterable.com/api/email/target",
@@ -56,6 +46,7 @@ var SimpleIterabledapter = (adapterOptions) => {
         campaignId: adapterOptions.verificationId,
         recipientEmail: email,
         dataFields: {
+          firstName: firstName,
           link: options.link,
         },
       },
